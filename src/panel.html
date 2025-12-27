@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; padding: 16px; background: #f3f4f6; color: #1f2937; margin: 0; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+        .title { font-size: 1.25rem; font-weight: bold; }
+        .controls { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+        .btn { padding: 8px 16px; border-radius: 6px; border: none; cursor: pointer; font-weight: 500; transition: background 0.2s; font-size: 0.875rem; }
+        .btn-primary { background: #3b82f6; color: white; }
+        .btn-primary:hover { background: #2563eb; }
+        .btn-danger { background: #ef4444; color: white; }
+        .btn-danger:hover { background: #dc2626; }
+        .btn-secondary { background: #e5e7eb; color: #374151; }
+        .btn-secondary:hover { background: #d1d5db; }
+        .card { background: white; padding: 16px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 16px; }
+        .status-badge { display: inline-flex; align-items: center; padding: 4px 8px; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
+        .status-recording { background: #fee2e2; color: #991b1b; }
+        .status-idle { background: #e5e7eb; color: #374151; }
+        .sticky-banner { background: #d1fae5; color: #065f46; padding: 12px; border-radius: 6px; margin-bottom: 16px; display: none; font-size: 0.875rem; border: 1px solid #a7f3d0; }
+        .sticky-banner.active { display: block; }
+        .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .stat-item { text-align: center; }
+        .stat-value { font-size: 1.5rem; font-weight: bold; color: #111827; }
+        .stat-label { font-size: 0.875rem; color: #6b7280; margin-top: 4px; }
+        .toggle { display: flex; align-items: center; gap: 8px; font-size: 0.875rem; cursor: pointer; user-select: none; }
+        .footer { margin-top: auto; display: flex; gap: 8px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="title">Blackbox Recorder</div>
+        <div id="recordingStatus" class="status-badge status-idle">Idle</div>
+    </div>
+
+    <div id="stickyBanner" class="sticky-banner">
+        <strong>Sticky Mode Active:</strong> Capturing data across navigations.
+    </div>
+
+    <div class="card">
+        <div class="controls">
+            <button id="btnRecord" class="btn btn-primary">Start Recording</button>
+            <button id="btnClear" class="btn btn-secondary">Clear Data</button>
+            <label class="toggle">
+                <input type="checkbox" id="chkSticky">
+                Sticky Mode
+            </label>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="stats">
+            <div class="stat-item">
+                <div id="statNetwork" class="stat-value">0</div>
+                <div class="stat-label">Network</div>
+            </div>
+            <div class="stat-item">
+                <div id="statInteractions" class="stat-value">0</div>
+                <div class="stat-label">Interactions</div>
+            </div>
+            <div class="stat-item">
+                <div id="statConsole" class="stat-value">0</div>
+                <div class="stat-label">Console</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="controls">
+            <button id="btnExport" class="btn btn-secondary">Export ZIP</button>
+            <button id="btnSend" class="btn btn-secondary" style="display: none;">Send to Service</button>
+        </div>
+    </div>
+    <!-- Service Export Modal -->
+    <dialog id="service-modal" style="border: 1px solid #ccc; border-radius: 8px; padding: 20px; max-width: 400px;">
+        <h3 style="margin-top: 0;">Send Report</h3>
+        <p><strong>Endpoint:</strong> <span id="modal-endpoint"></span></p>
+        <p><strong>Origin:</strong> <span id="modal-origin"></span></p>
+        <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;">
+            <button class="btn btn-secondary" onclick="document.getElementById('service-modal').close()">Cancel</button>
+            <button id="confirm-send-btn" class="btn btn-primary">Confirm Send</button>
+        </div>
+    </dialog>
+
+
+    <script type="module" src="panel.js"></script>
+</body>
+</html>
