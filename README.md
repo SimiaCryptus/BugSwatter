@@ -32,41 +32,22 @@ Since this is a developer tool, you can install it directly from the source code
 
 ### Prerequisites
 1.  Ensure you have Google Chrome or a Chromium-based browser (Edge, Brave, etc.) installed.
-2.  You need a `manifest.json` file (not included in the snippets provided, but required for the extension to load).
 
 ### Installation Steps
 
-1.  **Prepare the Directory:**
-    Create a folder named `blackbox-recorder`. Inside it, place the files provided in the source code. Ensure the directory structure looks like this:
-    ```text
-    blackbox-recorder/
-    ├── manifest.json      <-- (See below if you need to create this)
-    ├── background.js
-    ├── content.js
-    ├── devtools.html
-    ├── devtools.js
-    ├── injected.js
-    ├── panel.html
-    ├── panel.js
-    └── utils/
-        ├── db.js
-        └── selectors.js
-    ```
-    *Note: Based on the imports in the code (`./utils/db.js`), you must move `db.js` and `selectors.js` into a `utils` folder.*
-
-2.  **Open Extensions Management:**
+1. **Open Extensions Management:**
     Open Chrome and navigate to `chrome://extensions/`.
 
-3.  **Enable Developer Mode:**
+2. **Enable Developer Mode:**
     Toggle the switch labeled **"Developer mode"** in the top right corner of the page.
 
-4.  **Load Unpacked:**
+3. **Load Unpacked:**
     Click the **"Load unpacked"** button that appears in the top left.
 
-5.  **Select Folder:**
+4. **Select Folder:**
     Select the `blackbox-recorder` folder you created in Step 1.
 
-6.  **Verify:**
+5. **Verify:**
     The extension should now appear in your list of installed extensions.
 
 ### Usage
