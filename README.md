@@ -45,7 +45,7 @@ Since this is a developer tool, you can install it directly from the source code
     Click the **"Load unpacked"** button that appears in the top left.
 
 4. **Select Folder:**
-    Select the `blackbox-recorder` folder you created in Step 1.
+    Select the folder where the extension source code is located (the folder containing `manifest.json`).
 
 5. **Verify:**
     The extension should now appear in your list of installed extensions.
